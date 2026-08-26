@@ -1,0 +1,29 @@
+# Registry manifest for dea-semantic-architecture.
+# Active registration through Assessment-Models/assessment-registry waits on CR-AR-01 landing (Phase 1).
+# Until then, this manifest exists locally for forward compatibility.
+
+asset:
+  id: dea-semantic-architecture
+  class: semantic
+  title: "Enterprise Semantic Architecture"
+  summary: "Canonical grounding repository for how enterprises organise meaning (semantic layers, vocabularies, concept graphs, knowledge-graph architectures) and the means to author sector-, industry-, and sub-sector-specific Semantic Architecture assets."
+  source:
+    repo: technehub-labs/dea-semantic-architecture
+    url: https://github.com/technehub-labs/dea-semantic-architecture
+  contract:
+    opendea_version: "1.0.0"
+    spec_versions:
+      - cr: "CR-ESA-01"
+        version: "0.1.0-proposal"
+  status: candidate
+  dependencies:
+    - id: dea-architecture-framework
+      kind: references
+    - id: dea-metaframework
+      kind: axiom-source
+    - id: dea-concepts-model
+      kind: references
+    - id: dea-metamodel
+      kind: conforms-to
+    - id: dea-ontology
+      kind: sibling

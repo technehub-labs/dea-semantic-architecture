@@ -1,0 +1,25 @@
+name: CI — manifest + structural lint
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  structural-lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify repo layout
+        run: |
+          for f in README.md CHARTER.md TENETS.md GOVERNANCE.md CHANGELOG.md BUILD-A-SPECIALIZED-ASSET.md; do
+            test -f "$f" || (echo "missing: $f" && exit 1)
+          done
+          for d in axioms patterns sectors change-requests; do
+            test -d "$d" || (echo "missing dir: $d" && exit 1)
+            test -f "$d/README.md" || (echo "missing index: $d/README.md" && exit 1)
+          done
+          test -f change-requests/CR-ESA-01.md || (echo "missing: change-requests/CR-ESA-01.md" && exit 1)
+      - name: Validate registry manifest (lightweight YAML lint)
+        run: |
+          python3 -c "import yaml,sys; d=yaml.safe_load(open('registry-manifest.yaml')); assert d['asset']['class']=='semantic'; print('manifest ok')"
