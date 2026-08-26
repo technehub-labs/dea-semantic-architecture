@@ -12,14 +12,32 @@ jobs:
       - uses: actions/checkout@v4
       - name: Verify repo layout
         run: |
+          set -e
+          # Top-level grounding docs
           for f in README.md CHARTER.md TENETS.md GOVERNANCE.md CHANGELOG.md BUILD-A-SPECIALIZED-ASSET.md; do
-            test -f "$f" || (echo "missing: $f" && exit 1)
+            test -f "$f" || (echo "missing top-level file: $f" && exit 1)
           done
-          for d in axioms patterns sectors change-requests; do
-            test -d "$d" || (echo "missing dir: $d" && exit 1)
-            test -f "$d/README.md" || (echo "missing index: $d/README.md" && exit 1)
+          # axioms: README.md + three axiom files
+          test -d axioms || (echo "missing dir: axioms" && exit 1)
+          test -f axioms/README.md || (echo "missing: axioms/README.md" && exit 1)
+          for ax in axioms/axiom-01-semantic-layer-discipline.md axioms/axiom-02-vocabulary-governance.md axioms/axiom-03-concept-graph-topology.md; do
+            test -f "$ax" || (echo "missing axiom file: $ax" && exit 1)
           done
+          # patterns: PATTERN-INDEX.md OR README.md (federation convention)
+          test -d patterns || (echo "missing dir: patterns" && exit 1)
+          if [ ! -f patterns/README.md ] && [ ! -f patterns/PATTERN-INDEX.md ]; then
+            echo "missing patterns index (need patterns/README.md or patterns/PATTERN-INDEX.md)" && exit 1
+          fi
+          # sectors: README.md (SECTOR-INDEX.md acceptable too)
+          test -d sectors || (echo "missing dir: sectors" && exit 1)
+          if [ ! -f sectors/README.md ] && [ ! -f sectors/SECTOR-INDEX.md ]; then
+            echo "missing sectors index (need sectors/README.md or sectors/SECTOR-INDEX.md)" && exit 1
+          fi
+          # change-requests: README.md + CR-ESA-01.md
+          test -d change-requests || (echo "missing dir: change-requests" && exit 1)
+          test -f change-requests/README.md || (echo "missing: change-requests/README.md" && exit 1)
           test -f change-requests/CR-ESA-01.md || (echo "missing: change-requests/CR-ESA-01.md" && exit 1)
+          echo "layout ok"
       - name: Validate registry manifest (lightweight YAML lint)
         run: |
-          python3 -c "import yaml,sys; d=yaml.safe_load(open('registry-manifest.yaml')); assert d['asset']['class']=='semantic'; print('manifest ok')"
+          python3 -c "import yaml; d=yaml.safe_load(open('registry-manifest.yaml')); assert d['asset']['class']=='semantic'; print('manifest ok')"
