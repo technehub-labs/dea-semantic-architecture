@@ -2,7 +2,8 @@
 
 | CR | Title | Status | Date | PR |
 |----|-------|--------|------|----|
-| [CR-ESA-01](./CR-ESA-01.md) | Enterprise Semantic Architecture — umbrella / spec proposal | Proposed | 2026-08-26 | (Phase 0) |
+| [CR-ESA-01](./CR-ESA-01.md) | Enterprise Semantic Architecture — umbrella / spec proposal | Proposed | 2026-08-26 | (Phase 0 — bootstrap on main `6900cfc`) |
+| [CR-ESA-01 Phase 1](./CR-ESA-01.md#phase-plan) | Grounding docs (CHARTER + TENETS + three axioms with ECF derivation) | Proposed | 2026-08-26 | (Phase 1 — pending merge) |
 
 ## Pipeline
 

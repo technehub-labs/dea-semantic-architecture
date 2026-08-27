@@ -13,9 +13,12 @@ This repository grounds **how an enterprise organises meaning** — vocabularies
 
 ## What lives here
 
-- `CHARTER.md` — core meaning, scope, and non-scope of ESA within OpenDEA. **(Full prose lands in Phase 1.)**
-- `TENETS.md` — numbered axioms of the discipline, derived from the ECF 7×7 axiom grid. **(Full prose lands in Phase 1.)**
-- `axioms/` — three axiom files, each with derivation table to ECF. **(Stub prose in Phase 1.)**
+- `CHARTER.md` — core meaning, scope, and non-scope of ESA within OpenDEA. **(Phase 1 — full prose landed.)**
+- `TENETS.md` — numbered axioms of the discipline, derived from the ECF 7×7 axiom grid. **(Phase 1 — three tenets with full ECF derivation tables.)**
+- `axioms/` — three axiom files, each with derivation table to ECF.
+  - `axiom-01-semantic-layer-discipline.md`
+  - `axiom-02-vocabulary-governance.md`
+  - `axiom-03-concept-graph-topology.md`
 - `patterns/` — reusable Semantic Architecture patterns (semantic layer architectures, vocabulary governance, concept-graph topologies, semantic-interoperability patterns). **(Stub index; bodies in Phase 4.)**
 - `sectors/` — sector-, industry-, and sub-sector-specific ESA assets. **(Index only in Phase 1; first pair — telecom operator + cloud service provider — in Phase 2–3.)**
 - `BUILD-A-SPECIALIZED-ASSET.md` — playbook for authoring a new sector ESA asset. **(Outline in Phase 0; full prose in Phase 4.)**
@@ -44,7 +47,7 @@ OpenDEAM (root authority)
 
 ## Status
 
-This repository is a **proposal** — it ships a scaffold + the spec doc, but the substantive content (CHARTER prose, TENETS, axioms, patterns, sector content) lands in subsequent phases per `change-requests/CR-ESA-01.md`.
+Phase 1 (full grounding docs — CHARTER + TENETS + three axioms with ECF derivation tables) **shipped on this branch, pending merge**. Subsequent phases per `change-requests/CR-ESA-01.md`.
 
 **Visibility:** private at land; promoted to public after Phase 1 ships.
 
